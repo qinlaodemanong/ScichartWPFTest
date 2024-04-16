@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsTestScichart", "..\WindowsFormsTestScichart\WindowsFormsTestScichart.csproj", "{CC7C8F90-B857-4825-991B-A878AAA56530}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScichartLineWPF", "..\kromstation\ScichartLineWPF\ScichartLineWPF.csproj", "{B042AD39-9A0D-4253-B21F-2B83D1812F61}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC7C8F90-B857-4825-991B-A878AAA56530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC7C8F90-B857-4825-991B-A878AAA56530}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC7C8F90-B857-4825-991B-A878AAA56530}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC7C8F90-B857-4825-991B-A878AAA56530}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B042AD39-9A0D-4253-B21F-2B83D1812F61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B042AD39-9A0D-4253-B21F-2B83D1812F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B042AD39-9A0D-4253-B21F-2B83D1812F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B042AD39-9A0D-4253-B21F-2B83D1812F61}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EBFD3201-4BDC-4F1A-940E-DE0C875AED35}
+	EndGlobalSection
+EndGlobal
