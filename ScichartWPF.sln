@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34009.444
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsTestScichart", "..\WindowsFormsTestScichart\WindowsFormsTestScichart.csproj", "{CC7C8F90-B857-4825-991B-A878AAA56530}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScichartLineWPF", "..\kromstation\ScichartLineWPF\ScichartLineWPF.csproj", "{B042AD39-9A0D-4253-B21F-2B83D1812F61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScichartLineWPF", "ScichartLineWPF\ScichartLineWPF.csproj", "{B042AD39-9A0D-4253-B21F-2B83D1812F61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

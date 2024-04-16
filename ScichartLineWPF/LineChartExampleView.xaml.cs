@@ -19,32 +19,96 @@ namespace ScichartLineWPF
         private List<FastLineRenderableSeries> fastLineRenderableSeries;
         public LineChartExampleView()
         {
-            SciChartSurface.SetRuntimeLicenseKey("dhHMy3VOANfBbbpRfBSNXxFWsOZK7Sf8pjtvqy80GNg1Pk9A1/9ZQg15VOYMho+kT1YElOEiKz9aOUMjmuYW+5jObw7zl05MCJ6benZ4hlsVZxsOzsP/W6LEbb2gf4nEzAJlwwpdw7Ywsvm1Rxqplz85FsDf/DpnTWYIjGj/llM8aigEqBWnf2HOsQ1obmiMLc5+s/9ItKZTAIVep2ZAVYeB9+e2j+BQ2yYtUCENP4gXV8a70muAC5HaPmbKZWrtJfiAZBv1ef8fHBq7pqblgfDlKfHdkbOJPIqUJKSjN0DxPMAQ9Zu4NBPhZAmcEDy6hbobLBsY2CovvDWGXpFkywHBH6XvllakvmuinUcfY5NJ6pWgbQg40yOQSbytbDksWIuUmBYGKOVD2yCWT6b+oimX/biIBl2kE0zvTnFJ2EDAPLSH4VxIcg4lyKTG/5CHXmJhZ1IsejY6g6keqBdOj0BROySn9D6DIJ9A7wf9Sj/8Oj8E5TVkpfZdMLf5LmTp6WktlTNhG1IP5Xa2sjb4eLLILqWc5dDC7n7jaLHcutwpmAuKTBVfLFR4dfkq");
+            // Enter scichart Key
+            SciChartSurface.SetRuntimeLicenseKey("");
             InitializeComponent();
             fastLineRenderableSeries = new List<FastLineRenderableSeries>();
         }
 
         private void LineChartExampleView_OnLoaded(object sender, RoutedEventArgs e)
         {
-            // Set some data
-            var chromData = GetChromData();
-            for (int i = 0; i < 10; i++)
+            //CreateBugLine();
+        }
+
+        /// <summary>
+        /// Create lines without anti-aliasing
+        /// </summary>
+        public void CreateBugLine()
+        {
+            string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
+            // 向上导航，直到找到包含项目文件的目录
+            while (!Directory.Exists(Path.Combine(currentDirectory, "Resources")))
             {
-                var dataSeries2 = new XyDataSeries<double, double>();
-                var lineSeries = new FastLineRenderableSeries()
-                {
-                    Stroke = Colors.OrangeRed,
-                    StrokeThickness = 2,
-                    AntiAliasing = true,
-                };
-                fastLineRenderableSeries.Add(lineSeries);
-                sciChart.RenderableSeries.Add(lineSeries);
-                foreach (var data in chromData)
-                {
-                    dataSeries2.Append(data.Key, data.Value);
-                }
-                lineSeries.DataSeries = dataSeries2;
+                currentDirectory = Directory.GetParent(currentDirectory).FullName;
             }
+
+            // 找到了包含项目文件的目录后，获取文件
+            string filePath = Path.Combine(currentDirectory, "Resources");
+            string xPath = Path.Combine(filePath, "bugX.txt");
+            string yPath = Path.Combine(filePath, "bugY.txt");
+            string y1Path = Path.Combine(filePath, "bugY1.txt");
+            List<double> xData = GetChromData(xPath);
+            List<double> yData = GetChromData(yPath);
+            List<double> y1Data = GetChromData(y1Path);
+            //List<double> y1Data = new List<double>();
+            XyyDataSeries<double, double> splineBanDataSeries = new XyyDataSeries<double, double>();
+            splineBanDataSeries.Append(xData, yData, y1Data);
+            splineBanDataSeries.SeriesName = "BUG";
+            var bandSeries = new FastBandRenderableSeries()
+            {
+                DataSeries = splineBanDataSeries,
+                //Name = id,
+                StrokeThickness = 1,
+                Fill = Colors.Transparent,
+                FillY1 = Colors.Transparent,
+                StrokeY1 = Colors.LightGray,
+                StrokeDashArrayY1 = new double[] { 5, 1 },
+                AntiAliasing = true,
+            };
+
+            sciChart.RenderableSeries.Add(bandSeries);
+            sciChart.ZoomExtents();
+        }
+
+        /// <summary>
+        /// Create Ok Line
+        /// </summary>
+        public void CreateOkLine()
+        {
+            string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
+            // 向上导航，直到找到包含项目文件的目录
+            while (!Directory.Exists(Path.Combine(currentDirectory, "Resources")))
+            {
+                currentDirectory = Directory.GetParent(currentDirectory).FullName;
+            }
+
+            // 找到了包含项目文件的目录后，获取文件
+            string filePath = Path.Combine(currentDirectory, "Resources");
+            string xPath = Path.Combine(filePath, "okDataX.txt");
+            string yPath = Path.Combine(filePath, "okDataY.txt");
+            string y1Path = Path.Combine(filePath, "okDataY1.txt");
+            List<double> xData = GetChromData(xPath);
+            List<double> yData = GetChromData(yPath);
+            List<double> y1Data = GetChromData(y1Path);
+            //List<double> y1Data = new List<double>();
+            XyyDataSeries<double, double> splineBanDataSeries = new XyyDataSeries<double, double>();
+            splineBanDataSeries.Append(xData, yData, y1Data);
+            splineBanDataSeries.SeriesName = "OK";
+            var bandSeries = new FastBandRenderableSeries()
+            {
+                DataSeries = splineBanDataSeries,
+                //Name = id,
+                StrokeThickness = 1,
+                Fill = Colors.Transparent,
+                FillY1 = Colors.Transparent,
+                StrokeY1 = Colors.LightGray,
+                StrokeDashArrayY1 = new double[] { 5, 1 },
+                AntiAliasing = true,
+            };
+
+            sciChart.RenderableSeries.Add(bandSeries);
             sciChart.ZoomExtents();
         }
 
@@ -62,7 +126,7 @@ namespace ScichartLineWPF
         /// </summary>
         /// <param name="index">线的索引值</param>
         /// <param name="color">颜色值</param>
-        public void SetSignalLineColor(int index,Color color)
+        public void SetSignalLineColor(int index, Color color)
         {
             fastLineRenderableSeries[index].Stroke = color;
         }
@@ -72,7 +136,7 @@ namespace ScichartLineWPF
         /// </summary>
         /// <param name="min"></param>
         /// <param name="max"></param>
-        public void SetXAxisRange(double min,double max)
+        public void SetXAxisRange(double min, double max)
         {
             XAxis.VisibleRange = new DoubleRange(min, max);
         }
@@ -92,26 +156,32 @@ namespace ScichartLineWPF
             YAxis.VisibleRange = new DoubleRange(min, max);
         }
 
-        private Dictionary<double, double> GetChromData()
+        private List<double> GetChromData(string filePath)
         {
-            string filePath = "D:\\Work\\色谱网络\\反相标样1.csv";
             var reader = new StreamReader(filePath);
             string line;
-
-            Dictionary<double, double> keyValuePairs = new Dictionary<double, double>();
-
+            double result = 0;
+            List<double> data = new List<double>();
+            int i = 0;
             while ((line = reader.ReadLine()) != null)
             {
-                string[] values = line.Split(',');
-
-                if (values.Length == 2)
+                if (double.TryParse(line, out result))
                 {
-                    double time = Convert.ToDouble(values[0]);
-                    double signal = Convert.ToDouble(values[1]);
-                    keyValuePairs.Add(time, signal);
+
+                    double value = Convert.ToDouble(result);
+                    if (i == 1619)
+                    {
+                        Console.WriteLine(value);
+                    }
+                    //if (i > 200)
+                    //{
+                    //    data.Add(value);
+                    //}
+                    data.Add(value);
+                    i++;
                 }
             }
-            return keyValuePairs;
+            return data;
             // 读取文件内容
         }
     }

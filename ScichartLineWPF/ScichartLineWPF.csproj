@@ -32,14 +32,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SciChart.Charting, Version=8.0.0.27737, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL" />
+    <Reference Include="SciChart.Charting, Version=8.3.0.28019, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.8.3.0.28019\lib\net462\SciChart.Charting.dll</HintPath>
+    </Reference>
     <Reference Include="SciChart.Charting3D, Version=8.0.0.27737, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Tools\Lib\net462\SciChart.Charting3D.dll</HintPath>
     </Reference>
-    <Reference Include="SciChart.Core, Version=8.0.0.27737, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL" />
-    <Reference Include="SciChart.Data, Version=8.0.0.27737, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL" />
-    <Reference Include="SciChart.Drawing, Version=8.0.0.27737, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL" />
+    <Reference Include="SciChart.Core, Version=8.3.0.28019, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.8.3.0.28019\lib\net462\SciChart.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.Data, Version=8.3.0.28019, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.8.3.0.28019\lib\net462\SciChart.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.Drawing, Version=8.3.0.28019, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.8.3.0.28019\lib\net462\SciChart.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -56,18 +64,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalcalusChart.xaml.cs">
-      <DependentUpon>CalcalusChart.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomZoomModifier.cs" />
     <Compile Include="LineChartExampleView.xaml.cs">
       <DependentUpon>LineChartExampleView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PDA3DChart.xaml.cs">
-      <DependentUpon>PDA3DChart.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PDAContourLineChart.xaml.cs">
-      <DependentUpon>PDAContourLineChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -86,25 +84,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="CalcalusChart.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="LineChartExampleView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PDA3DChart.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PDAContourLineChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
